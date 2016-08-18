@@ -18,7 +18,7 @@
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" />
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -28,6 +28,7 @@
     <![endif]-->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/pokemon.js"></script>
+    <button type="button" class="btn btn-primary btn-lg foo" data-toggle="modal" data-target="#myModal"></button>
   </head>
 
   <body style="background-image: url(wallpaper-1.png); height:100%; width:100%;">
@@ -58,13 +59,14 @@
     </nav> -->
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+<!--     <div class="jumbotron">
       <div class="container" text-align:center>
         <h2 align="center">The Poke Data Trainer</h1>
 
       </div>
-    </div>
-
+    </div> -->
+</div>
+</div>
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -101,6 +103,28 @@
        </div>
 
       <hr>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h2 class="modal-title" id="myModalLabel" align="center">Welcome to the Poke Data Trainer!</h1>
+			      </div>
+			      <div class="modal-body" align="center">
+			        In each round, you will be given a random pokemon, facing a random opponent pokemon. 
+
+			        Determine the attack that will be the most effective. Consider pokemon types, attack power, and pokemon attributes. 
+
+			        Good luck!
+			      </div>
+			      <div class="modal-footer">
+<!-- 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+			        <button type="button" class="btn btn-primary">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
 
       <footer>
         <p>&copy; 2016 Company, Inc.</p>
@@ -108,13 +132,30 @@
     </div> <!-- /container -->
 
 
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+           <script type="text/javascript">
+
+           $("document").ready(function() {
+        $(".foo").trigger('click');
+    });
+    </script>
+<!--     <script>
+      function openColorBox(){
+        $.colorbox({iframe:true, width:"80%", height:"80%", href: "http://www.sitepoint.com"});
+      }
+      
+      setTimeout(openColorBox, 5000);
+    </script>
     <script>
       var opponent = getRandomPokemon(true);
       var you = getRandomPokemon(false);
-    </script>
+    </script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
