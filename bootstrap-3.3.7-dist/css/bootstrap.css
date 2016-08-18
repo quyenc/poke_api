@@ -1184,7 +1184,7 @@ h6,
 .h5,
 .h6 {
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.1;
   color: inherit;
 }
@@ -4956,8 +4956,8 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
@@ -4985,8 +4985,8 @@ a.badge:focus {
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   .container .jumbotron,
   .container-fluid .jumbotron {
@@ -6233,6 +6233,22 @@ button.close {
   content: " ";
   border-right-width: 0;
   border-left-color: #fff;
+}
+.pokemon-image {
+  border-width: 3px;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
+  width: 50%;
+  margin: 0 auto;
+}
+.opponent-pokemon-image {
+  border-width: 3px;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
+  width: 50%;
+  margin: 0 auto;
 }
 .carousel {
   position: relative;
