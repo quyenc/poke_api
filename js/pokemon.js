@@ -1,7 +1,9 @@
+// Will want to pass in a list of numbers that the pokemon CANNOT be
 function getRandomPokemon(){    
-	$.get("http://pokeapi.co/api/v2/pokemon/3/", function(res) {
+	var num = Math.floor((Math.random() * 150) + 1);
+	var url = "http://pokeapi.co/api/v2/pokemon/" + num + "/";
+	$.get(url, function(res) {
 		var name = res["name"];
-		var num = Math.floor((Math.random() * 150) + 1);
 		console.log("name = " + name);
 	});
 }
