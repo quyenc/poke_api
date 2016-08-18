@@ -1122,7 +1122,8 @@ img {
 .carousel-inner > .item > a > img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 300px;
+  width: 300px;
 }
 .img-rounded {
   border-radius: 6px;
@@ -6236,18 +6237,33 @@ button.close {
 }
 .pokemon-image {
   border-width: 3px;
-  padding: 10px;
+  padding: 10%;
   border-color: black;
   border-style: solid;
-  width: 50%;
+  width: 66%;
   margin: 0 auto;
 }
 .opponent-pokemon-image {
   border-width: 3px;
-  padding: 10px;
+  padding: 10%;
   border-color: black;
   border-style: solid;
-  width: 50%;
+  width: 66%;
+  margin: 0 auto;
+  
+}
+.opponent-pokemon-name {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+.pokemon-name {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin: 0 auto;
 }
 .carousel {
