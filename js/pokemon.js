@@ -1,8 +1,9 @@
 var usedPokemon = [];
 
-var Pokemon = function (id) {
+var Pokemon = function (id, cb) {
+	cb = cb || function (){};
 	var url = "http://pokeapi.co/api/v2/pokemon/" + id + "/";
-	$.get(url, function(res) {
+	$.get(url, (function(res) {
 		// Construct the Pokemon object
 		var name = res["name"];
 		console.log("name = " + name);
@@ -14,25 +15,28 @@ var Pokemon = function (id) {
 		this.name = name;
 		this.imageUrl = imageUrl;
 
-		return this;
-	});
+		cb(this);
+	}).bind(this));
 }
 
 // Will want to pass in a list of numbers that the pokemon CANNOT be
-function getRandomPokemon(isOpponent){    
+function getRandomPokemon(isOpponent, cb){    
 	var num = Math.floor((Math.random() * 150) + 1);
 	while (usedPokemon.includes(num)) {
 		num = Math.floor((Math.random() * 150) + 1);
 	}
 
 	usedPokemon.push(num);
-	var randomPokemon = new Pokemon(num);
+ 	var poke = new Pokemon(num, function (pokemon){
+		console.log("from constructor: " + pokemon.imageUrl);
 
-	if (isOpponent) {
-		document.getElementById("opponent-pokemon-image").src = randomPokemon.imageUrl;
-	} else {
-		document.getElementById("your-pokemon-image").src = randomPokemon.imageUrl;
-	}
+		if (isOpponent) {
+			document.getElementById("opponent-pokemon-image").src = pokemon.imageUrl;
+		} else {
+			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
+		}
 
-	return randomPokemon;
+		//cb(pokemon);
+	});
+
 }
