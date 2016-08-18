@@ -12,12 +12,12 @@ var Pokemon = function (id, cb) {
 		console.log(imageUrl);
 
 		// Get stats
-		/* var stats = res["stats"];
-		for (var item in stats) {
-			var statName = item["stat"].name;
-			var value = item["base_stat"];
+		var stats = res.stats;
+		for (var i = 0; i < stats.length; i++){
+			var statName = (stats[i])["stat"].name;
+			var value = (stats[i]).base_stat;
 			console.log(statName + ": " + value);
-		} */
+		} 
 
 		this.id = id;
 		this.name = name;
