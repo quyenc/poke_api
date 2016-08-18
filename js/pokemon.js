@@ -16,6 +16,21 @@ var Pokemon = function (id, cb) {
 		for (var i = 0; i < stats.length; i++){
 			var statName = (stats[i])["stat"].name;
 			var value = (stats[i]).base_stat;
+
+			switch(statName) {
+				case "defense":
+					this.defense = value;
+					break;
+				case "attack":
+					this.attack = value;
+					break;
+				case "special-defense":
+					this.spdefense = value;
+				case "special-attack":
+					this.spattack = value;
+				default:
+					break;
+			}
 			console.log(statName + ": " + value);
 		} 
 
