@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
     <script src="js/pokemon.js"></script>
   </head>
 
-  <body>
+  <body style="background-image: url(wallpaper-1.png); height:100%; width:100%;">
 <!-- 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -68,27 +68,35 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h2 align="center">Opponent Pokemon</h2>
-          <div class="opponent-pokemon-image">
-          	   <img src="charizard.gif" class="img-responsive" alt="Responsive image" id="opponent-pokemon-image">
+	      <div class="col-md-12">
+	        <h2 align="center">Opponent Pokemon</h2>
+	        <div class="opponent-pokemon-image">
+	        	   <img src="charizard.gif" class="img-responsive" alt="Responsive image" id="opponent-pokemon-image">
+            </div>
+            <div class="opponent-pokemon-name" align="center">{pokemon name}</div>
+            <p align="center">some cool swag text about ur p0k3m0n </p>
           </div>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        </div>
+          <div class="col-md-12">
+	          
+       	  </div>
+       	</div>
         <div class="col-md-6">
 	      <div class="col-md-12">
 	          <h2 align="center">Your Pokemon</h2>
 	          <div class="pokemon-image">
  				<img src="blastoise.gif" class="img-responsive" alt="Responsive image" id="your-pokemon-image">         	  
  			  </div>
+ 			  <div class="pokemon-name" align="center">{pokemon name}</div>
 	          <p align="center">some cool swag text about ur p0k3m0n </p>
 	      </div>
-          <div class="col-md-12">
+          <div class="col-md-12 pokemon-attacks">
 	          <h2 align="center">Attacks</h2>
 	          <p align="center">Select the most effective attack against the current opponent.</p>
-	          <button type="button" class="btn btn-primary btn-lg btn-block">Attack 1</button>
-	          <button type="button" class="btn btn-primary btn-lg btn-block">Attack 2</button>
-	          <button type="button" class="btn btn-primary btn-lg btn-block">Attack 3</button>
-	          <button type="button" class="btn btn-primary btn-lg btn-block">Attack 4</button>
+	          <button type="button" class="btn btn-primary btn-lg btn-block attack-1">Attack 1</button>
+	          <button type="button" class="btn btn-primary btn-lg btn-block attack-2">Attack 2</button>
+	          <button type="button" class="btn btn-primary btn-lg btn-block attack-3">Attack 3</button>
+	          <button type="button" class="btn btn-primary btn-lg btn-block attack-4">Attack 4</button>
+	          <br>
        	  </div>
        </div>
 
