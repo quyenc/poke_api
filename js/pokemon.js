@@ -11,6 +11,14 @@ var Pokemon = function (id, cb) {
 		var imageUrl = res["sprites"].front_default;
 		console.log(imageUrl);
 
+		// Get stats
+		/* var stats = res["stats"];
+		for (var item in stats) {
+			var statName = item["stat"].name;
+			var value = item["base_stat"];
+			console.log(statName + ": " + value);
+		} */
+
 		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
