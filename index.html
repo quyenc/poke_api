@@ -32,7 +32,8 @@
 
   <body>
     <script>
-      getRandomPokemon([]);
+      getRandomPokemon([], true);
+      getRandomPokemon([], false);
     </script>
 <!-- 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -73,7 +74,7 @@
         <div class="col-md-6">
           <h2 align="center">Opponent Pokemon</h2>
           <div class="opponent-pokemon-image">
-          	   <img src="charizard.gif" class="img-responsive" alt="Responsive image"> 
+          	   <img src="charizard.gif" class="img-responsive" alt="Responsive image" id="opponent-pokemon-image">
           </div>
           <div class="opponent-pokemon-name">Charizard</div>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -82,7 +83,7 @@
 	      <div class="col-md-12">
 	          <h2 align="center">Your Pokemon</h2>
 	          <div class="pokemon-image">
- 				<img src="blastoise.gif" class="img-responsive" alt="Responsive image">         	  
+ 				<img src="blastoise.gif" class="img-responsive" alt="Responsive image" id="your-pokemon-image">         	  
  			  </div>
  			  <div class="opponent-pokemon-name">Blastoise</div>
 	          <p align="center">some cool swag text about ur p0k3m0n </p>
