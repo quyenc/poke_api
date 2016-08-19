@@ -2,14 +2,15 @@ var usedPokemon = [];
 var opponentPokemon = "";
 var yourPokemon = "";
 
+
 randomInterval = function(min, max)
 {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-var Move = function(url, cb) {
+var Move = function(url, cb2) {
 
-cb = cb || function(){};
+cb2 = cb2 || function(){};
 		  
 $.get(url, (function(res) {
 
@@ -25,24 +26,30 @@ $.get(url, (function(res) {
   this.class = res.type.name;
   this.accuracy = res.accuracy;
 
-  cb(this);
+  cb2(this);
 	}).bind(this));
 };
 
 function getMoves(data){
     var moves=[];
     var temp;
+
+    var newMove;
+
+
     
-    while(moves.length<4)
-    {
+    for(var i=0; i<4; i++){
       temp =randomInterval(0, data.length-1);
-      moves.push(new Move(data[temp].move.url));
+      newMove= new Move(data[temp].move.url, function(move){
+      	moves.push(newMove);
+      });
+      
     }
      
      return moves; 
 }
 
-var Pokemon = function (id, cb) {
+var Pokemon = function (id, cb, player) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
 	$.get(url, (function(res) {
@@ -87,19 +94,35 @@ var Pokemon = function (id, cb) {
 		this.type1 = type1;
 		this.type2 = type2;
 		console.log(this.type1 + ", " + this.type2);
-		this.moves=getMoves(res.moves);
+		if(player)
+			this.moves=getMoves(res.moves);
 
 		cb(this);
 	}).bind(this));
 }
 
 function init() {
+
 	getRandomPokemon(true, function (p){
 		opponentPokemon = p;
 	});
 	getRandomPokemon(false, function (p){
 		yourPokemon = p;
 	});
+}
+
+function computeDamage(){
+
+}
+function populateScreen(){
+
+}
+
+
+function controller(){
+	init();
+	computeDamage();
+	populateScreen();
 }
 
 
@@ -124,6 +147,9 @@ function getRandomPokemon(isOpponent, cb){    
 			// document.getElementById("img-responsive").height = '300px';
 		}
 		cb(pokemon);
-	});
+	}, isOpponent);
 
 }
+
+var poo = getRandomPokemon(true);
+var a;
