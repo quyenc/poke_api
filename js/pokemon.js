@@ -2,10 +2,7 @@ var usedPokemon = [];
 var opponentPokemon = "";
 var yourPokemon = "";
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f011ed8b451887e516d498ac61751f8f9c402258
 randomInterval = function(min, max)
 {
   return Math.floor(Math.random()*(max-min+1)+min);
@@ -36,11 +33,10 @@ $.get(url, (function(res) {
 function getMoves(data){
     var moves=[];
     var temp;
-<<<<<<< HEAD
+
     var newMove;
 
-=======
->>>>>>> f011ed8b451887e516d498ac61751f8f9c402258
+
     
     while(moves.length<4){
       temp =randomInterval(0, data.length-1);
@@ -105,18 +101,13 @@ var Pokemon = function (id, cb) {
 }
 
 function init() {
-<<<<<<< HEAD
-	
-	
-	yourPokemon = getRandomPokemon(false);
-=======
+
 	getRandomPokemon(true, function (p){
 		opponentPokemon = p;
 	});
 	getRandomPokemon(false, function (p){
 		yourPokemon = p;
 	});
->>>>>>> f011ed8b451887e516d498ac61751f8f9c402258
 }
 
 
