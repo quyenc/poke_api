@@ -124,12 +124,12 @@ function getRandomPokemon(isOpponent, cb){    
 		if (isOpponent) {
 			document.getElementById("opponent-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("opponent-pokemon-name").innerHTML = pokemon.name;
-			document.getElementById("opponent-img-responsive").height = '300px';
+			// document.getElementById("opponent-img-responsive").height = '300px';
 
 		} else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			document.getElementById("img-responsive").height = '300px';
+			// document.getElementById("img-responsive").height = '300px';
 		}
 		cb(pokemon);
 	});
