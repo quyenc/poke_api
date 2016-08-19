@@ -1,3 +1,4 @@
+/* maps every type to an index for the type advantages table */
 var type2id = {
   normal:   0,
   fire:     1,
@@ -19,6 +20,7 @@ var type2id = {
   fairy:    17
 };
 
+/* inverse of type2id */
 var id2type = [
   'normal',
   'fire',
@@ -40,6 +42,22 @@ var id2type = [
   'fairy'
 ];
 
+/* the type advantages table. the indices into the array and string
+   are the indices for the attacking move type and the defending pokemon
+   type respectively
+
+   type[i][j] == '0':
+     move of type i does not affect pokemon of type j
+
+   type[i][j] == '<':
+     move of type i does half damage against pokemon of type j
+
+   type[i][j] == '=':
+     move of type i does full damage against pokemon of type j
+
+   type[i][j] == '>':
+     move of type i does double damage against pokemon of type j
+*/
 var typeTable = [
   '============<0==<=',
   '=<<=>>=====><=<=>=',
@@ -62,7 +80,9 @@ var typeTable = [
 ]
 
 /* 
-  damageFormula(info)
+  function damageFormula(info)
+
+  Computes actual damage given the following information:
 
   info = {
     attack    (int)
@@ -95,6 +115,18 @@ function damageFormula(info) {
 
   return ((2*lvl+10)/250 * att/def * pwr + 2) * stb * typ * crt;
 }
+
+/*
+  function computeTypeModifier(attType, defType1 [, defType2])
+
+  Computes the type advantage multiplier for a move of type attType against a
+  pokemon of types defType1 and defType2. Call with just the first two arguments
+  if the target pokemon does not have a secondary type.
+
+  attType:  string (lowercase)
+  defType1: string (lowercase)
+  defType2: string (lowercase)
+*/
 
 function computeTypeModifier(attType, defType1, defType2) {
   var mul1 = 1, mul2 = 1;
@@ -136,11 +168,16 @@ function computeTypeModifier(attType, defType1, defType2) {
 }
 
 /*
+  CALL THIS TO GET THE DAMAGE VALUES FOR THE MOVES
+
   damageExpectedValue(attackingPokemon, defendingPokemon, move)
 
-  attackingPokemon (Pokemon object)
-  defendingPokemon (Pokemon object)
-  move             (Move object)
+  Computes the expected value of the damage given an attacking Pokemon, a
+  defending Pokemon, and a move.
+
+  attackingPokemon (Pokemon)
+  defendingPokemon (Pokemon)
+  move             (Move)
 */
 
 function damageExpectedValue(attackingPokemon, defendingPokemon, move) {
@@ -197,30 +234,37 @@ function damageExpectedValue(attackingPokemon, defendingPokemon, move) {
            + (1-critChance)*damageFormula(critDisabledParams)) * move.accuracy/100;
 }
 
+/*************************************************************
+ * Example
+ */
+
+// necessary attacking pokemon info
 ap = {
   name: 'venusaur',
   attack: 185,
   defense: 153,
   spattack: 205,
   spdefense: 205,
-  level: 100,
+  level: 100,       // default is 100
   type1: 'grass',
   type2: 'poison'
 };
 
+// necessary defending pokemon info
 dp = {
   name: 'blastoise',
   attack: 188,
   defense: 184,
   spattack: 175,
   spdefense: 215,
-  level: 100,
+  level: 100,       // default is 100
   type1: 'water',
-  type2: null
+  type2: null       // use null if second type does not exist
 };
 
+// necessary move info
 move = {
-  name: 'absorb',
+  name: 'absorb',   // not necessary
   class: 'special',
   power: 20,
   accuracy: 100,
