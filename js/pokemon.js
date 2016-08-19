@@ -8,9 +8,9 @@ randomInterval = function(min, max)
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-var Move = function(url, cb) {
+var Move = function(url, cb2) {
 
-cb = cb || function(){};
+cb2 = cb2 || function(){};
 		  
 $.get(url, (function(res) {
 
@@ -26,20 +26,22 @@ $.get(url, (function(res) {
   this.class = res.type.name;
   this.accuracy = res.accuracy;
 
-  cb(this);
+  cb2(this);
 	}).bind(this));
 };
 
 function getMoves(data){
     var moves=[];
     var temp;
-
+    var newMove;
 
     
-    while(moves.length<4)
-    {
+    while(moves.length<4){
       temp =randomInterval(0, data.length-1);
-      moves.push(new Move(data[temp].move.url));
+      newMove= new Move(data[temp].move.url, function(move){
+      	moves.push(newMove);
+      });
+      
     }
     
      
@@ -96,7 +98,8 @@ var Pokemon = function (id, cb) {
 }
 
 function init() {
-	opponentPokemon = getRandomPokemon(true);
+	
+	
 	yourPokemon = getRandomPokemon(false);
 }
 
