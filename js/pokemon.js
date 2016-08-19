@@ -32,26 +32,26 @@ $.get(url, (function(res) {
 	}).bind(this));
 };
 
-function getMoves(data){
+function getMoves(data, cb){
     var moves=[];
     var temp;
 
     var newMove;
 
 
-    
+    var done = 0;
     for(var i=0; i<4; i++){
       temp =randomInterval(0, data.length-1);
       new Move(data[temp].move.name, data[temp].move.url, function(move){
       	moves.push(move);
+      	done++;
+      	if (done == 4){
+      		cb(moves);
+      	}
       });
 
       
     }
-
-     
-     
-     return moves; 
 }
 
 function determineStrongestMove(moves) {
@@ -111,10 +111,14 @@ var Pokemon = function (id, cb, notPlayer) {
 		this.imageUrl = imageUrl;
 		this.type1 = type1;
 		this.type2 = type2;
+
+		var vm = this;
 		console.log(this.type1 + ", " + this.type2);
 		if(!notPlayer)
-			this.moves=getMoves(res.moves);
-
+			getMoves(res.moves, function (newMoves){
+				vm.moves= newMoves;
+				cb(vm);
+			});
 		cb(this);
 	}).bind(this));
 }
@@ -126,23 +130,34 @@ function init() {
 	});
 	getRandomPokemon(false, function (p){
 		yourPokemon = p;
+		populateScreen();
 	});
 }
 
 function computeDamage(){
 
+}
+
+function refresh() {
+	document.getElementById("opponent-pokemon-image").src = "pokeball.gif";
+	document.getElementById("your-pokemon-image").src = "pokeball2.gif";
+	document.getElementById("opponent-pokemon-name").innerHTML = "???";
+	document.getElementById("your-pokemon-name").innerHTML = '???';
+	init();
 
 }
-function populateScreen(){
 
+function populateScreen(){
+	var moves = yourPokemon.moves;
+	for(var i=0; i<4;i++){
+		document.getElementById("attack" + (i+1) + "-button").innerHTML = moves[i].name;
+	}
 }
 
 
 function controller(){
-
 	init();
 	computeDamage();
-	populateScreen();
 }
 
 
@@ -159,13 +174,10 @@ function getRandomPokemon(isOpponent, cb){    
 		if (isOpponent) {
 			document.getElementById("opponent-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("opponent-pokemon-name").innerHTML = pokemon.name;
-		} else {
+			}
+		else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			for(var i = 0; i < 4; i++) {
-				var currMove = pokemon.moves[i];
-				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.class;
-			}
 		}
 		cb(pokemon);
 	}, isOpponent);
