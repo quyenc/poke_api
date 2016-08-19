@@ -2,8 +2,6 @@ var usedPokemon = [];
 var opponentPokemon = "";
 var yourPokemon = "";
 
-var poo = getRandomPokemon();
-
 randomInterval = function(min, max)
 {
   return Math.floor(Math.random()*(max-min+1)+min);
@@ -34,20 +32,16 @@ $.get(url, (function(res) {
 function getMoves(data){
     var moves=[];
     var temp;
-
-
     
     while(moves.length<4)
     {
       temp =randomInterval(0, data.length-1);
       moves.push(new Move(data[temp].move.url));
     }
-    
      
      return moves; 
-    
-
 }
+
 var Pokemon = function (id, cb) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
@@ -60,13 +54,16 @@ var Pokemon = function (id, cb) {
 
 		// Get types
 		var type1 = ((res["types"])[0].type)["name"];
-		var type2 = ((res["types"])[1].type)["name"];
+		var type2 = null;
+		if (res["types"].length > 1) {
+			type2 = ((res["types"])[1].type)["name"];
+		}
 
 		// Get stats
 		var stats = res.stats;
 		for (var i = 0; i < stats.length; i++){
 			var statName = (stats[i])["stat"].name;
-			var value = (stats[i]).base_stat;
+			var value = (stats[i]).base_stat * 2 + 5;
 
 			switch(statName) {
 				case "defense":
@@ -88,7 +85,7 @@ var Pokemon = function (id, cb) {
 		this.name = name;
 		this.imageUrl = imageUrl;
 		this.type1 = type1;
-		this.type2 = type2 ? type2 : null;
+		this.type2 = type2;
 		console.log(this.type1 + ", " + this.type2);
 		this.moves=getMoves(res.moves);
 
