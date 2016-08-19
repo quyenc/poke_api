@@ -40,16 +40,16 @@ function getMoves(data){
     
     for(var i=0; i<4; i++){
       temp =randomInterval(0, data.length-1);
-      newMove= new Move(data[temp].move.url, function(move){
-      	moves.push(newMove);
+      new Move(data[temp].move.url, function(move){
+      	moves.push(move);
       });
-      
+      setTimeout(function(){},1000); 
     }
      
      return moves; 
 }
 
-var Pokemon = function (id, cb, player) {
+var Pokemon = function (id, cb, notPlayer) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
 	$.get(url, (function(res) {
@@ -94,7 +94,7 @@ var Pokemon = function (id, cb, player) {
 		this.type1 = type1;
 		this.type2 = type2;
 		console.log(this.type1 + ", " + this.type2);
-		if(player)
+		if(!notPlayer)
 			this.moves=getMoves(res.moves);
 
 		cb(this);
@@ -113,6 +113,7 @@ function init() {
 
 function computeDamage(){
 
+
 }
 function populateScreen(){
 
@@ -120,6 +121,7 @@ function populateScreen(){
 
 
 function controller(){
+
 	init();
 	computeDamage();
 	populateScreen();
@@ -150,6 +152,3 @@ function getRandomPokemon(isOpponent, cb){    
 	}, isOpponent);
 
 }
-
-var poo = getRandomPokemon(true);
-var a;
