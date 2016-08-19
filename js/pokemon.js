@@ -94,8 +94,12 @@ var Pokemon = function (id, cb) {
 }
 
 function init() {
-	opponentPokemon = getRandomPokemon(true);
-	yourPokemon = getRandomPokemon(false);
+	getRandomPokemon(true, function (p){
+		opponentPokemon = p;
+	});
+	getRandomPokemon(false, function (p){
+		yourPokemon = p;
+	});
 }
 
 
@@ -119,7 +123,7 @@ function getRandomPokemon(isOpponent, cb){    
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
 			// document.getElementById("img-responsive").height = '300px';
 		}
-		return pokemon;
+		cb(pokemon);
 	});
 
 }
