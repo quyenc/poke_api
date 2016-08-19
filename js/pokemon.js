@@ -146,7 +146,8 @@ function getRandomPokemon(isOpponent, cb){    
 					btn.innerHTML = "hello world";
 			}); */
 			for(var i = 0; i < 4; i++) {
-				document.getElementById("attack" + (i+1) + "-button").innerHTML = "hello world";
+				var currMove = pokemon.moves[i];
+				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.class;
 			}
 		}
 		cb(pokemon);
