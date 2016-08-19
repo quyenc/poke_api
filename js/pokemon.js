@@ -106,7 +106,7 @@ var Pokemon = function (id, cb, notPlayer) {
 				vm.moves= newMoves;
 				cb(vm);
 			});
-
+		cb(this);
 	}).bind(this));
 }
 
@@ -123,8 +123,8 @@ function init() {
 
 function computeDamage(){
 
-
 }
+
 function populateScreen(){
 	var moves = yourPokemon.moves;
 	for(var i=0; i<4;i++){
@@ -135,7 +135,6 @@ function populateScreen(){
 
 function controller(){
 	init();
-	// populateScreen();
 	computeDamage();
 }
 
@@ -157,9 +156,6 @@ function getRandomPokemon(isOpponent, cb){    
 		else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			/* for(var i=0; i<4;i++){
-				document.getElementById("attack" + (i+1) + "-button").innerHTML = (pokemon.moves)[i].name;
-			} */
 		}
 		cb(pokemon);
 	}, isOpponent);
