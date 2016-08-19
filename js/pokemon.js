@@ -8,10 +8,11 @@ randomInterval = function(min, max)
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-var Move = function(url, cb2) {
+var Move = function(name, url, cb2) {
 
 cb2 = cb2 || function(){};
-		  
+
+this.name = name;		  
 $.get(url, (function(res) {
 
   if (!res) {
@@ -22,6 +23,7 @@ $.get(url, (function(res) {
     };
   }
 
+  
   this.power = res.power;
   this.class = res.type.name;
   this.accuracy = res.accuracy;
@@ -40,7 +42,7 @@ function getMoves(data){
     
     for(var i=0; i<4; i++){
       temp =randomInterval(0, data.length-1);
-      new Move(data[temp].move.url, function(move){
+      new Move(data[temp].move.name, data[temp].move.url, function(move){
       	moves.push(move);
       });
 
