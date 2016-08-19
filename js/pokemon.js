@@ -2,7 +2,6 @@ var usedPokemon = [];
 var opponentPokemon = "";
 var yourPokemon = "";
 
-var poo = getRandomPokemon();
 
 randomInterval = function(min, max)
 {
@@ -123,3 +122,6 @@ function getRandomPokemon(isOpponent, cb){    
 	});
 
 }
+
+var poo = getRandomPokemon(true);
+var a;
