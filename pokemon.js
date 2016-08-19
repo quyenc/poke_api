@@ -30,20 +30,14 @@ var Move = function(data) {
   type1
   type2
 */
-var Pokemon = function (data) {
-  if (!data) {
-    data = {
-      attack: 0,
-      defense: 0,
-      level: 100,
-      type1: '',
-      type2: ''
-    };
-  }
-
+var Pokemon = function (pkmn) {
+  this.name = pkmn.name;
+  this.id = data.id;
   this.attack = data.attack;
   this.defense = data.defense;
+  this.spattack = data.spattack;
   this.level = data.level;
   this.type1 = data.type1;
   this.type2 = data.type2;
+  this.allmoves;
 };
