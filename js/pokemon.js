@@ -34,20 +34,16 @@ $.get(url, (function(res) {
 function getMoves(data){
     var moves=[];
     var temp;
-
-
     
     while(moves.length<4)
     {
       temp =randomInterval(0, data.length-1);
       moves.push(new Move(data[temp].move.url));
     }
-    
      
      return moves; 
-    
-
 }
+
 var Pokemon = function (id, cb) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
@@ -69,7 +65,7 @@ var Pokemon = function (id, cb) {
 		var stats = res.stats;
 		for (var i = 0; i < stats.length; i++){
 			var statName = (stats[i])["stat"].name;
-			var value = (stats[i]).base_stat;
+			var value = (stats[i]).base_stat * 2 + 5;
 
 			switch(statName) {
 				case "defense":
