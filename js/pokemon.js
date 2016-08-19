@@ -54,6 +54,19 @@ function getMoves(data){
      return moves; 
 }
 
+function determineStrongestMove(moves) {
+	var max = 0;
+	var index = -1;
+	for (var i = 0; i < 4; i++) {
+		var damage = damageExpectedValue(yourPokemon, opponentPokemon, moves[i]);
+		if (damage > max) {
+			max = damage;
+			index = i;
+		}
+	}
+	return index;
+}
+
 var Pokemon = function (id, cb, notPlayer) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
