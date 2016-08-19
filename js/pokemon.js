@@ -52,9 +52,15 @@ var Pokemon = function (id, cb) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
 	$.get(url, (function(res) {
+		console.log("res = " + res);
+
 		// Construct the Pokemon object
 		var name = res["name"].slice(0,1).toUpperCase() + res["name"].slice(1);
 		var imageUrl = res["sprites"].front_default;
+
+		// Get types
+		var type1 = ((res["types"])[0].type)["name"];
+		var type2 = ((res["types"])[1].type)["name"];
 
 		// Get stats
 		var stats = res.stats;
@@ -81,6 +87,9 @@ var Pokemon = function (id, cb) {
 		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
+		this.type1 = type1;
+		this.type2 = type2 ? type2 : null;
+		console.log(this.type1 + ", " + this.type2);
 		this.moves=getMoves(res.moves);
 
 		cb(this);
