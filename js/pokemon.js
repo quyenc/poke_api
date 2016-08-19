@@ -58,7 +58,10 @@ var Pokemon = function (id, cb) {
 
 		// Get types
 		var type1 = ((res["types"])[0].type)["name"];
-		var type2 = ((res["types"])[1].type)["name"];
+		var type2 = null;
+		if (res["types"].length > 1) {
+			type2 = ((res["types"])[1].type)["name"];
+		}
 
 		// Get stats
 		var stats = res.stats;
@@ -86,7 +89,7 @@ var Pokemon = function (id, cb) {
 		this.name = name;
 		this.imageUrl = imageUrl;
 		this.type1 = type1;
-		this.type2 = type2 ? type2 : null;
+		this.type2 = type2;
 		console.log(this.type1 + ", " + this.type2);
 		this.moves=getMoves(res.moves);
 
