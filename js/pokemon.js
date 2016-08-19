@@ -151,7 +151,7 @@ function getRandomPokemon(isOpponent, cb){    
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
 			for(var i = 0; i < 4; i++) {
 				var currMove = pokemon.moves[i];
-				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.class;
+				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.name;
 			}
 		}
 		cb(pokemon);
