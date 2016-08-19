@@ -1124,7 +1124,7 @@ img {
   display: block;
   max-width: 100%;
   height: 300px;
-  width: 300px;
+  width: auto;
 }
 .img-rounded {
   border-radius: 6px;
@@ -5880,6 +5880,10 @@ button.close {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   outline: 0;
+}
+
+.foo {
+  opacity: 0.0;
 }
 .modal.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
