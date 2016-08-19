@@ -44,7 +44,7 @@ function getMoves(data){
       	moves.push(newMove);
       });
       
-    }
+    } 
      
      return moves; 
 }
@@ -139,12 +139,15 @@ function getRandomPokemon(isOpponent, cb){    
 		if (isOpponent) {
 			document.getElementById("opponent-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("opponent-pokemon-name").innerHTML = pokemon.name;
-			// document.getElementById("opponent-img-responsive").height = '300px';
-
 		} else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			// document.getElementById("img-responsive").height = '300px';
+			/* $('btn btn-primary btn-lg btn-block attack-button').each(function(btn) {
+					btn.innerHTML = "hello world";
+			}); */
+			for(var i = 0; i < 4; i++) {
+				document.getElementById("attack" + (i+1) + "-button").innerHTML = "hello world";
+			}
 		}
 		cb(pokemon);
 	}, isOpponent);
