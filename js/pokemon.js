@@ -149,11 +149,9 @@ function getRandomPokemon(isOpponent, cb){    
 		} else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			/* $('btn btn-primary btn-lg btn-block attack-button').each(function(btn) {
-					btn.innerHTML = "hello world";
-			}); */
 			for(var i = 0; i < 4; i++) {
-				document.getElementById("attack" + (i+1) + "-button").innerHTML = "hello world";
+				var currMove = pokemon.moves[i];
+				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.class;
 			}
 		}
 		cb(pokemon);
