@@ -8,10 +8,11 @@ randomInterval = function(min, max)
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-var Move = function(url, cb2) {
+var Move = function(name, url, cb2) {
 
 cb2 = cb2 || function(){};
-		  
+
+this.name = name;		  
 $.get(url, (function(res) {
 
   if (!res) {
@@ -22,6 +23,7 @@ $.get(url, (function(res) {
     };
   }
 
+  
   this.power = res.power;
   this.class = res.type.name;
   this.accuracy = res.accuracy;
@@ -40,16 +42,19 @@ function getMoves(data){
     
     for(var i=0; i<4; i++){
       temp =randomInterval(0, data.length-1);
-      newMove= new Move(data[temp].move.url, function(move){
-      	moves.push(newMove);
+      new Move(data[temp].move.name, data[temp].move.url, function(move){
+      	moves.push(move);
       });
+
       
     }
+
+     
      
      return moves; 
 }
 
-var Pokemon = function (id, cb, player) {
+var Pokemon = function (id, cb, notPlayer) {
 	cb = cb || function (){};
 	var url = "http://pokeapi.kevgriffin.com/api/v2/pokemon/" + id + "/";
 	$.get(url, (function(res) {
@@ -94,7 +99,7 @@ var Pokemon = function (id, cb, player) {
 		this.type1 = type1;
 		this.type2 = type2;
 		console.log(this.type1 + ", " + this.type2);
-		if(player)
+		if(!notPlayer)
 			this.moves=getMoves(res.moves);
 
 		cb(this);
@@ -113,6 +118,7 @@ function init() {
 
 function computeDamage(){
 
+
 }
 function populateScreen(){
 
@@ -120,6 +126,7 @@ function populateScreen(){
 
 
 function controller(){
+
 	init();
 	computeDamage();
 	populateScreen();
@@ -139,17 +146,15 @@ function getRandomPokemon(isOpponent, cb){    
 		if (isOpponent) {
 			document.getElementById("opponent-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("opponent-pokemon-name").innerHTML = pokemon.name;
-			// document.getElementById("opponent-img-responsive").height = '300px';
-
 		} else {
 			document.getElementById("your-pokemon-image").src = pokemon.imageUrl;
 			document.getElementById("your-pokemon-name").innerHTML = pokemon.name;
-			// document.getElementById("img-responsive").height = '300px';
+			for(var i = 0; i < 4; i++) {
+				var currMove = pokemon.moves[i];
+				document.getElementById("attack" + (i+1) + "-button").innerHTML = currMove.class;
+			}
 		}
 		cb(pokemon);
 	}, isOpponent);
 
 }
-
-var poo = getRandomPokemon(true);
-var a;
